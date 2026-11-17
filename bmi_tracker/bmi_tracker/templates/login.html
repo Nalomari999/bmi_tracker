@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+
+<!-- standard Flask static file setup -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Main navigation -->
+<div class="navbar">
+
+    <div class="logo">
+        BMI Tracker
+    </div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+
+        <!-- users usually come here first before login -->
+        <a href="/signup">Sign Up</a>
+
+        <a href="/login" class="nav-btn">
+            Login
+        </a>
+    </div>
+
+</div>
+
+<div class="page-container">
+
+    <div class="card form-card">
+
+        <h1>Login</h1>
+
+        <!--Simple login form.-->
+
+        <form method="POST">
+
+            <label for="userField">
+                Username:
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                id="userField"
+                required
+            >
+
+            <label for="passField">
+                Password:
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                id="passField"
+                required
+            >
+
+            <div style="margin-top:24px;">
+
+                <button
+                    class="form-btn"
+                    type="submit"
+                >
+                    Login
+                </button>
+
+            </div>
+
+        </form>
+
+        {% if message %}
+
+        <div class="message-box">
+
+            <!-- displaying backend validation message -->
+            <p>
+                <strong>{{ message }}</strong>
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        <div class="auth-links">
+
+            <a href="/forgot_password">
+                Forgot Password?
+            </a>
+
+            <a href="/signup">
+                Sign Up
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

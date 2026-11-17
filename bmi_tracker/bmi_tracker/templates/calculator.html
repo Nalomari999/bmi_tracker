@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+```
+<!-- responsive layout -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator</title>
+
+<!-- main stylesheet -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+```
+<!-- Navigation bar -->
+<div class="navbar">
+
+    <div class="logo">
+        BMI Tracker
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/calculator">
+            BMI Calculator
+        </a>
+
+        <a href="/stats">
+            Statistics Dashboard
+        </a>
+
+        <a href="/progress">
+            My Progress
+        </a>
+
+        <a href="/logout" class="nav-btn">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+<div class="page-container">
+
+    <div class="card form-card">
+
+        <h1>BMI Calculator</h1>
+
+        <!-- user information -->
+        <p class="user-line">
+            User: {{ full_name }} ({{ username }})
+        </p>
+
+        <p>
+            Enter your information below to calculate your BMI and save your data.
+        </p>
+
+
+        <form method="POST">
+
+            <label>
+                Height:
+            </label>
+
+            <div class="inline-fields">
+
+                <div class="field">
+
+                    <input
+                        type="number"
+                        name="height_ft"
+                        placeholder="Feet"
+                        required
+                    >
+
+                </div>
+
+                <div class="field">
+
+                    <input
+                        type="number"
+                        name="height_in"
+                        placeholder="Inches"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+            <label>
+                Weight:
+            </label>
+
+            <input
+                type="number"
+                step="0.1"
+                name="weight_lb"
+                placeholder="Pounds"
+                required
+            >
+
+
+            <div style="margin-top:24px;">
+
+                <button
+                    class="form-btn"
+                    type="submit"
+                >
+                    Calculate BMI
+                </button>
+
+            </div>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result-box">
+
+            <!-- result message from backend -->
+            <p>
+                <strong>{{ result.message }}</strong>
+            </p>
+
+            {% if result.success %}
+
+
+                <p>
+                    <strong>Height:</strong>
+                    {{ result.height_ft }} ft {{ result.height_in }} in
+                </p>
+
+                <p>
+                    <strong>Weight:</strong>
+                    {{ result.weight_lb }} lb
+                </p>
+
+                <p>
+                    <strong>BMI:</strong>
+                    {{ result.bmi }}
+                </p>
+
+                <p>
+                    <strong>Classification:</strong>
+                    {{ result.category }}
+                </p>
+
+
+            {% endif %}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
