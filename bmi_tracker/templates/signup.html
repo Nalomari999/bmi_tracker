@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<title>Sign Up</title>
+
+<!-- shared stylesheet -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+```
+
+</head>
+
+<body>
+
+
+<!-- navbar -->
+<div class="navbar">
+
+    <div class="logo">
+        BMI Tracker
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/">Home</a>
+
+        <a href="/login">
+            Login
+        </a>
+
+        <!-- keeping signup highlighted -->
+        <a class="nav-btn" href="/signup">
+            Sign Up
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="page-container">
+
+    <div class="card form-card">
+
+        <h1>Sign Up</h1>
+
+        <form method="POST">
+
+            <label for="fullname">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                name="fullname"
+                id="fullname"
+                required
+            >
+
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                name="username"
+                id="username"
+                required
+            >
+
+
+            <label for="birthday">
+                Birthday
+            </label>
+
+            <input
+                type="date"
+                name="birthday"
+                id="birthday"
+                required
+            >
+
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                id="password"
+                required
+            >
+
+
+            <label for="confirm_password">
+                Confirm Password
+            </label>
+
+            <input
+                type="password"
+                name="confirm_password"
+                id="confirm_password"
+                required
+            >
+
+
+            <label for="security_q">
+                Security Question
+            </label>
+
+            <select
+                name="security_q"
+                id="security_q"
+                required
+            >
+
+                <option value="">
+                    Select a question
+                </option>
+
+                {% for question in security_questions %}
+
+                    <option value="{{ question }}">
+                        {{ question }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label for="security_a">
+                Security Answer
+            </label>
+
+            <input
+                type="text"
+                name="security_a"
+                id="security_a"
+                required
+            >
+
+
+            <!-- submit button -->
+            <button class="form-btn" type="submit">
+                Sign Up
+            </button>
+
+        </form>
+
+
+        <!-- showing validation messages -->
+        {% if message %}
+
+            <div class="info-box">
+
+                <p>
+                    <strong>{{ message }}</strong>
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
